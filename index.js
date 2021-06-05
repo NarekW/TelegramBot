@@ -1,3 +1,6 @@
+const express = require("express");
+const app = express();
+const port = process.env.PORT || 3000;
 const { Telegraf } = require("telegraf");
 require("dotenv").config();
 
@@ -8,7 +11,19 @@ bot.on("sticker", (ctx) => ctx.reply("👍")); //bot.on это обработч�
 bot.hears("Привет", (ctx) => ctx.reply("Привет как ты?")); // bot.hears это обработчик конкретного текста, данном случае это - "hi"
 bot.on("text", (ctx) => ctx.reply(`Я не знаю ответа на твой вопрос`));
 bot.launch();
-console.log("Успешный запуск");
+
+console.log("Бот запушен!");
 
 process.once("SIGINT", () => bot.stop("SIGINT"));
 process.once("SIGTERM", () => bot.stop("SIGTERM"));
+
+
+app.get("/", (req, res) => {
+    res.send("Привет я бот!");
+});
+
+
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`);
+});
