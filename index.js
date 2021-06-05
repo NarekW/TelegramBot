@@ -14,15 +14,13 @@ bot.launch();
 
 console.log("Бот запушен!");
 
-process.once("SIGINT", () => bot.stop("SIGINT"));
-process.once("SIGTERM", () => bot.stop("SIGTERM"));
+// process.once("SIGINT", () => bot.stop("SIGINT"));
+// process.once("SIGTERM", () => bot.stop("SIGTERM"));
 
 
 app.get("/", (req, res) => {
     res.send("Привет я бот!");
 });
-
-
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
