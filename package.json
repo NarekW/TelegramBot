@@ -2,7 +2,6 @@
   "name": "vika_bot",
   "version": "1.0.0",
   "description": "For Vika",
-  "main": "index.js",
   "scripts": {
     "start": "node Bot.js",
     "test": "echo \"Error: no test specified\" && exit 1"
