@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
+const DYNO_URL = "https://mytelegram-bot-2000.herokuapp.com"; 
+const wakeUpDyno = require("./wokeDyno.js");
 const { Telegraf } = require("telegraf");
 require("dotenv").config();
 // const fetch = require("node-fetch");
@@ -24,8 +26,7 @@ bot.command('pipe', (ctx) => ctx.replyWithPhoto({ url: 'https://picsum.photos/20
 // });
 
 
-bot.on("text", (ctx) => ctx.reply(`Рад за тебя.`, 
-{parse_mode: 'Markdown', disable_web_page_preview: false}));
+bot.on("text", (ctx) => ctx.reply(`Рад за тебя.`));
 bot.launch();
 
 console.log("Бот запушен!");
@@ -33,6 +34,12 @@ console.log("Бот запушен!");
 process.once("SIGINT", () => bot.stop("SIGINT"));
 process.once("SIGTERM", () => bot.stop("SIGTERM"));
 
+
+app.get("/", (req, res) => {
+    res.send("Привет я бот!");
+});
+
 app.listen(port, () => {
+  wakeUpDyno(DYNO_URL); // will start once server starts
   console.log(`Example app listening at http://localhost:${port}`);
 });
